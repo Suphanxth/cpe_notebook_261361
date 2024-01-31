@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: your_django_app_name
+    name: cpe notebook
     buildCommand: "./build.sh"
     env: python
     startCommand: "gunicorn notebook.wsgi"
