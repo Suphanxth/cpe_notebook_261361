@@ -16,12 +16,19 @@
             {% if notebook.is_maths %}
                 <p>***มีคณิตศาสตร์***</p>
             {% endif %}
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, impedit beatae quasi deleniti praesentium nulla, ut molestiae ullam excepturi saepe maxime laborum quas iusto, tempore animi vitae consequuntur. Accusamus, sequi?</p>
+            <p>{{notebook.description}}</p>
         </div>  
         {% else %}
             <p>ไม่พบรายวิชานี้</p>
         {% endif %}
         <a class="button button-primary" href="{% url 'library' %}">บันทึกรายวิชา</a>
+        <div class="grid">
+            <a href="{% url 'lecture' lecture_id='oop_1' %}" target="_blank">Lecture 1</a>
+            <a href="{% url 'lecture' lecture_id='oop_2' %}" target="_blank">Lecture 2</a>
+            <a>Lecture 3</a>
+            <a>Lecture 4</a>
+            <a>Lecture 5</a>
+        </div>
     </div>
 </section>
 

@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_general.apps.AppGeneralConfig',
-    'app_notebooks.apps.AppNotebooksConfig'
+    'app_notebooks.apps.AppNotebooksConfig',
+    'app_lectures.apps.AppLecturesConfig'
 ]
 
 MIDDLEWARE = [

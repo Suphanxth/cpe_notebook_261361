@@ -1,0 +1,16 @@
+{% extends 'app_general/components/base.html' %}
+{% load static %}
+
+{% block site_title %}
+    {{notebook.title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="content-section content-section-single">
+    <div class="content-container">
+        <h2>{{ lecture.lecture_id }}</h2>
+        <iframe src="{{ lecture.lecture_relative_url }}" width="1280" height="960" allow="autoplay"></iframe>
+    </div>
+</section>
+
+{% endblock %}
