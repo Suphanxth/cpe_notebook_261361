@@ -39,6 +39,20 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+.logout-button {
+  background-color: #4CAF50; /* Set the background color */
+  color: white; /* Set the text color */
+  padding: 10px 20px; /* Set padding */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Add hover effect */
+.logout-button:hover {
+  background-color: #45a049;
+}
+
 .content-section{
   padding: 64px 16px;
 }

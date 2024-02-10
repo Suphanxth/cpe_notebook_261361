@@ -5,6 +5,28 @@
         <img src="{% static 'app_general/weblogo.png' %}">
         <span>CPEnotebook</span>
     </a>
-    <a class="site-header-item" href="{% url 'notebooks' %}">รายวิชาทั้งหมด</a>
-    <a class="site-header-item" href="{% url 'about' %}">เกี่ยวกับ</a>
+    <a class="site-header-item" href="{% url 'notebooks' %}">
+        <span>รายวิชาทั้งหมด</span>
+    </a>
+    <a class="site-header-item" href="{% url 'about' %}">
+        <span>เกี่ยวกับ</span>
+    </a>
+    {% if user.is_authenticated %}
+        <a class="site-header-item" href="#">
+            <span>{{ user.username }}</span>
+        </a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">
+              <span>ออกจากระบบ</span>
+            </button>
+        </form>
+    {% else %}
+        <a class="site-header-item" href="{% url 'login' %}">
+            <span>เข้าสู่ระบบ</span>
+        </a>
+        <a class="site-header-item" href="#">
+            <span>สมัครสมาชิก</span>
+        </a>
+    {% endif %}
 </header>
