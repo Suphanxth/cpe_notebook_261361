@@ -175,13 +175,17 @@ a{
 
 .site-header-item:hover{
   background-color: rgba(0, 0, 0, 0.1);
-
 }
 
 .site-header-brand img{
   display: inline-block;
   height: 32px;
   margin-right: 8px;
+}
+
+.logout{
+  color: #111111; /* replace with your preferred color code */
+  text-decoration: none;
 }
 
 /*site-footer*/
