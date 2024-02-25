@@ -1,14 +1,18 @@
 {% extends 'app_general/components/base.html' %}
 
 {% block site_title %}
-สร้างบัญชี | 
+Dashboard | 
 {% endblock %}
 
 {% block content %}
 <section class="content-section content-section-single">
     <div class="content-container content-container-narrow">
-        <h3 class="content-title">{{ user.username }} 's dashboard</h3>
-        
+        <h3 class="content-title">สวัสดีคุณ {{ user.username }}😘</h3>
+        <p>
+            <a href="{% url 'dashboard' %}">แดชบอร์ด</a>
+            <a href="{% url 'profile' %}">ข้อมูลผู้ใช้</a>
+        </p>
+        <h5>แดชบอร์ด</h5>
     </div>
 </section>
 {% endblock %}
