@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [host for host in ALLOWED_HOSTS if host]
 # Application definition
 
 INSTALLED_APPS = [
+    'app_users.apps.AppUsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +51,6 @@ INSTALLED_APPS = [
     'app_general.apps.AppGeneralConfig',
     'app_notebooks.apps.AppNotebooksConfig',
     'app_lectures.apps.AppLecturesConfig',
-    'app_users.apps.AppUsersConfig'
 ]
 
 MIDDLEWARE = [
