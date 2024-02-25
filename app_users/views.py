@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from app_users.forms import RegisterForm
@@ -18,3 +19,7 @@ def register(request:HttpRequest):
     #GET
     context = {"form": form}
     return render(request, "app_users/register.html", context)
+
+@login_required
+def dashboard(request: HttpRequest):
+    return render(request, "app_users/dashboard.html")

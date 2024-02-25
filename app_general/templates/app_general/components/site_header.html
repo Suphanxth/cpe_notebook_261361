@@ -1,5 +1,9 @@
 {% load static %}
-
+<style>
+    .logout {
+        cursor: pointer;
+    }
+</style>
 <header class="site-header">
     <a class="site-header-item site-header-brand" href="{% url 'home' %}">
         <img src="{% static 'app_general/weblogo.png' %}">
@@ -12,15 +16,20 @@
         <span>เกี่ยวกับ</span>
     </a>
     {% if user.is_authenticated %}
-        <a class="site-header-item" href="#">
+        <a class="site-header-item" href="{% url 'dashboard' %}">
             <span>{{ user.username }}</span>
         </a>
-        <form class="site-header-item" action="{% url 'logout' %}" method="post" onclick="document.forms[0].submit()">
+        <form id="logoutForm" class="site-header-item" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <a class="logout" href="#" >
+            <a class="logout" onclick="submitFormAndRedirect()">
                 <span>ออกจากระบบ</span>
             </a>
         </form>
+        <script>
+            function submitFormAndRedirect() {
+                document.getElementById('logoutForm').submit();
+            }
+        </script>
     {% else %}
         <a class="site-header-item" href="{% url 'login' %}">
             <span>เข้าสู่ระบบ</span>

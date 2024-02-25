@@ -184,8 +184,7 @@ a{
 }
 
 .logout{
-  color: #111111; /* replace with your preferred color code */
-  text-decoration: none;
+  cursor: pointer;
 }
 
 /*site-footer*/
