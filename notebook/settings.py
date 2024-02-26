@@ -162,7 +162,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-
 #Email
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "test_inbox"

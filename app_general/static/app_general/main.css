@@ -260,7 +260,7 @@ input[type='email']:focus{
   border-radius: 10px;
 }
 
-.notebook-card:hover {
+.notebook-card:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -270,4 +270,10 @@ input[type='email']:focus{
   margin-bottom: 12px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+/*dark mode*/
+body.dark{
+  color: white;
+  background-color: #333333;
 }
