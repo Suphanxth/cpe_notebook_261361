@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Activate your account
+From: webmaster@localhost
+To: test05@mail.com
+Date: Mon, 26 Feb 2024 09:16:14 -0000
+Message-ID: <170893897480.21904.16654194410347063200@tahhh>
+
+กรุณากดที่ลิงค์เพื่อยืนยันตัวตน
+
+http://127.0.0.1:8000/users/activate/Ng/c30ij2-75d862c7923df477a596c4e8face1a6e
+-------------------------------------------------------------------------------

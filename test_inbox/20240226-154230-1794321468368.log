@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Activate accout
+From: webmaster@localhost
+To: test02@mail.com
+Date: Mon, 26 Feb 2024 08:42:30 -0000
+Message-ID: <170893695037.17176.6365905180512056574@tahhh>
+
+กดที่ลิงค์เพื่อยืนยันตัวตน
+
+http://127.0.0.1:8000/activate/mn/flahfio4hqhahf
+-------------------------------------------------------------------------------

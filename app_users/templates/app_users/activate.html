@@ -1,0 +1,17 @@
+{% extends 'app_general/components/base.html' %}
+
+{% block site_title %}
+{{ title }} | 
+{% endblock %}
+
+{% block content %}
+<section class="content-section content-section-single">
+    <div class="content-container content-container-narrow">
+        <h3 class="content-title">{{ status }}</h3>
+        <p>{{ description }}</p>
+        <p>
+            <a href="{% url 'login' %}" style="text-decoration: none;">⬅กลับไปหน้าเข้าสู่ระบบ</a>
+        </p>        
+    </div>
+</section>
+{% endblock %}
