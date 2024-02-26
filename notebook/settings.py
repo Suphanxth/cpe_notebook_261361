@@ -156,6 +156,12 @@ LOGOUT_REDIRECT_URL = "home"
 LOGIN_URL = "login"
 
 AUTH_USER_MODEL = "app_users.CustomUser"
+AUTHENTICATION_BACKENDS = [
+    "app_users.utils.auth_email_backend.EmailBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+
 
 #Email
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
