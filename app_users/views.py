@@ -17,65 +17,14 @@ def register(request:HttpRequest):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            # Register
-            user: CustomUser = form.save(commit=False)
-            user.is_active = False
-            user.save()
-
-            # login(request, user)
-
-            # email body
-            context = {
-                "protocol": request.scheme,
-                "host": request.get_host(),
-                "uid64": urlsafe_base64_encode(force_bytes(user.id)),
-                "token": activation_token_generator.make_token(user)
-            }
-            email_body = render_to_string("app_users/activate_email.html", context)
-
-            # Send email
-            email = EmailMessage(
-                to=[user.email], 
-                subject="Activate your account", 
-                body=email_body)
-            email.send()
-
-
-
-            return HttpResponseRedirect(reverse("register_thankyou"))
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect(reverse("home"))
     else:
         form = RegisterForm()
     #GET
     context = {"form": form}
     return render(request, "app_users/register.html", context)
-
-
-def register_thankyou(request: HttpRequest):
-    return render(request, "app_users/register_thankyou.html")
-
-
-def activate(request:HttpRequest, uid64: str, token: str):
-    title = "Thank you💕"
-    status = "ยืนยันตัวตนสำเร็จ"
-    description = "คุณสามารถเข้าสู่ระบบได้ทันที"
-
-    # decode user id
-    id = urlsafe_base64_decode(uid64).decode()
-
-    try:
-        user: CustomUser = CustomUser.objects.get(id=id)
-        if not activation_token_generator.check_token(user, token):
-            raise Exception("Check token false")
-        user.is_active = True
-        user.save()
-    except:
-        print("ยืนยันตัวตนไม่สำเร็จ")
-        title = "Sorry🥲"
-        status = "ยืนยันตัวตนไม่สำเร็จ"
-        description = "ลิงค์หมดอายุหรือถูกใช้ไปแล้ว"
-
-    context = {"title": title, "status": status, "description": description}
-    return render(request, "app_users/activate.html", context)
 
 
 @login_required
