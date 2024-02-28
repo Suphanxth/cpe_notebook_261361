@@ -5,6 +5,7 @@ from .models import Notebook
 from app_notebooks.forms import FavouriteNotebookForm
 from django.contrib.auth.decorators import login_required
 from app_users.models import UserFavouriteNotebook
+from django.urls import reverse
 
 
 # Create your views here.
@@ -51,3 +52,10 @@ def favourite_notebook(request: HttpRequest, notebook_id):
                 notebook=Notebook(id=notebook_id),
             )
     return HttpResponseRedirect(request.headers.get("referer"))
+
+
+@login_required
+def unfavourite_notebook(request: HttpRequest, notebook_id):
+    if request.method == 'POST':
+        request.user.favourite_notebook_set.remove(Notebook(id=notebook_id))
+    return HttpResponseRedirect(reverse("dashboard"))

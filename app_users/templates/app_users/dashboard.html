@@ -13,7 +13,27 @@ Dashboard |
             <a href="{% url 'profile' %}">ข้อมูลผู้ใช้</a>
             <a href="{% url 'password_change' %}">เปลี่ยนรหัสผ่าน</a>
         </p>
-        <h5>แดชบอร์ด</h5>
+        <!-- <h5>แดชบอร์ด</h5> -->
+        <h5>รายวิชาที่บันทึก</h5>
+        {% for notebook_pivot in favourite_notebook_pivots %}
+            {% with notebook=notebook_pivot.notebook %}
+                <div>
+                    <h3>{{notebook.title}}</h3>
+                    <p>{{ notebook_pivot.level_label }}</p>
+                    <p>{{ notebook.chapters }} chapters</p>
+                    {% if notebook.is_maths %}
+                        <p>***มีคณิตศาสตร์***</p>
+                    {% endif %}
+                    <p>{{notebook.description}}</p>
+                    <form action="{% url 'unfavourite_notebook' notebook.id %}" method="post">
+                        {% csrf_token %}
+                        <p>
+                            <button type="submit">ลบรายวิชานี้</button>
+                        </p>
+                    </form>
+                </div>
+            {% endwith %}
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

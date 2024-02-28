@@ -80,7 +80,9 @@ def activate(request:HttpRequest, uid64: str, token: str):
 
 @login_required
 def dashboard(request: HttpRequest):
-    return render(request, "app_users/dashboard.html")
+    favourite_notebook_pivots = request.user.favourite_notebook_pivot_set.order_by("level")
+    context = {"favourite_notebook_pivots": favourite_notebook_pivots}
+    return render(request, "app_users/dashboard.html", context)
 
 
 @login_required
