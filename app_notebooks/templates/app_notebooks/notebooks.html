@@ -8,6 +8,16 @@
 <section class="content-section content-section-single">
     <div class="content-container">
         <h2 class="content-title">รายวิชาทั้งหมด</h1>
+
+        <!-- Search Bar -->
+        <form class="search-form">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="ค้นหารายวิชา">
+            </div>
+        </form>
+
+        <div id="search-results"></div>
+
         {% if notebooks.count > 0 %}
             <div class="grid grid-3">
                 {% for notebook in notebooks %}
@@ -34,4 +44,42 @@
         {% endif %} 
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#search-input').on('input', function(){
+        var query = $(this).val();
+        if (query.length >= 2) {
+            $.ajax({
+                type: 'GET',
+                url: '{% url "search_notebooks" %}',
+                data: {
+                    'query': query
+                },
+                success: function(data){
+                    var results = '';
+                    data.notebooks.forEach(function(notebook){
+                        results += '<div><a href="/notebooks/' + notebook.id + '">' + notebook.code + ' ' + notebook.title + '</a></div>';
+                    });
+                    $('#search-results').html(results);
+                    $('#search-results').show(); // Show the search results
+                }
+            });
+        } else {
+            $('#search-results').empty();
+            $('#search-results').hide(); // Hide the search results if query length is less than 2
+        }
+    });
+
+    // Handle click event on search result links
+    $(document).on('click', '#search-results a', function(e){
+        e.preventDefault(); // Prevent the default behavior of the anchor tag
+        var url = $(this).attr('href'); // Get the URL from the anchor tag
+        window.location.href = url; // Redirect to the URL
+    });
+
+});
+</script>
+
 {% endblock %}

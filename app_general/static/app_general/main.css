@@ -173,6 +173,11 @@ a{
   transition: background-color 500ms;
 }
 
+.site-header-right-container {
+  display: flex;
+  margin-left: auto; /* This will push the container to the right */
+}
+
 .site-header-item:hover{
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -276,4 +281,36 @@ input[type='email']:focus{
 body.dark{
   color: white;
   background-color: #333333;
+}
+
+/* Style for the search bar */
+#search-results {
+  display: none; /* Hide the search results initially */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  background-color: #f9f9f9; /* Add background color */
+  padding: 10px; /* Add padding */
+  margin: 10px; /* Add margin from the search bar */
+}
+
+#search-results a {
+  display: block;
+  color: #333; /* Set link color */
+  text-decoration: none; /* Remove underline */
+  padding: 5px 0; /* Add padding */
+}
+
+#search-results a:hover {
+  background-color: #eaeaea; /* Change background color on hover */
+}
+
+.search-container {
+  margin: 10px; /* Add margin around the search container */
+}
+
+#search-input {
+  width: 100%; /* Make the input field take up the full width */
+  padding: 10px; /* Add padding to the input field */
+  border: 1px solid #ccc; /* Add a border to the input field */
+  border-radius: 5px; /* Add rounded corners */
 }

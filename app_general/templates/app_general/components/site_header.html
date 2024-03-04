@@ -16,26 +16,30 @@
         <span>เกี่ยวกับ</span>
     </a>
     {% if user.is_authenticated %}
-        <a class="site-header-item" href="{% url 'dashboard' %}">
-            <span>{{ user.username }}</span>
-        </a>
-        <form id="logoutForm" class="site-header-item" action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <a class="logout" onclick="submitFormAndRedirect()">
-                <span>ออกจากระบบ</span>
+        <div class="site-header-right-container">
+            <a class="site-header-item" href="{% url 'dashboard' %}">
+                <span>{{ user.username }}</span>
             </a>
-        </form>
-        <script>
-            function submitFormAndRedirect() {
-                document.getElementById('logoutForm').submit();
-            }
-        </script>
+            <form id="logoutForm" class="site-header-item" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <a class="logout" onclick="submitFormAndRedirect()">
+                    <span>ออกจากระบบ</span>
+                </a>
+            </form>
+            <script>
+                function submitFormAndRedirect() {
+                    document.getElementById('logoutForm').submit();
+                }
+            </script>
+        </div>
     {% else %}
-        <a class="site-header-item" href="{% url 'login' %}">
-            <span>เข้าสู่ระบบ</span>
-        </a>
-        <a class="site-header-item" href="{% url 'register' %}">
-            <span>สร้างบัญชี</span>
-        </a>
+        <div class="site-header-right-container">
+            <a class="site-header-item" href="{% url 'login' %}">
+                <span>เข้าสู่ระบบ</span>
+            </a>
+            <a class="site-header-item" href="{% url 'register' %}">
+                <span>สร้างบัญชี</span>
+            </a>
+        </div>
     {% endif %}
 </header>
