@@ -6,34 +6,64 @@ Dashboard |
 
 {% block content %}
 <section class="content-section content-section-single">
-    <div class="content-container content-container-narrow">
-        <h3 class="content-title">สวัสดีคุณ {{ user.username }}😘</h3>
-        <p>
-            <a href="{% url 'dashboard' %}">แดชบอร์ด</a>
-            <a href="{% url 'profile' %}">ข้อมูลผู้ใช้</a>
-            <a href="{% url 'password_change' %}">เปลี่ยนรหัสผ่าน</a>
-        </p>
-        <!-- <h5>แดชบอร์ด</h5> -->
-        <h5>รายวิชาที่บันทึก</h5>
-        {% for notebook_pivot in favourite_notebook_pivots %}
-            {% with notebook=notebook_pivot.notebook %}
-                <div>
-                    <h3>{{notebook.title}}</h3>
-                    <p>{{ notebook_pivot.level_label }}</p>
-                    <p>{{ notebook.chapters }} chapters</p>
-                    {% if notebook.is_maths %}
-                        <p>***มีคณิตศาสตร์***</p>
-                    {% endif %}
-                    <p>{{notebook.description}}</p>
-                    <form action="{% url 'unfavourite_notebook' notebook.id %}" method="post">
-                        {% csrf_token %}
-                        <p>
-                            <button type="submit">ลบรายวิชานี้</button>
-                        </p>
-                    </form>
-                </div>
-            {% endwith %}
-        {% endfor %}
+    <div class="content-container content-container-wide">
+        <div class="left-section">
+            <h3 class="content-title" style="font-size: 32px;">สวัสดีคุณ {{ user.username }}😘</h3>
+            <div class="vertical-links">
+                <p>
+                    <a href="{% url 'dashboard' %}" style="font-size: large;">แดชบอร์ด</a>
+                </p>
+                <p>
+                    <a href="{% url 'profile' %}" style="font-size: large;">ข้อมูลผู้ใช้</a>
+                </p>
+                <p>
+                    <a href="{% url 'password_change' %}" style="font-size: large;">เปลี่ยนรหัสผ่าน</a>
+                </p>
+            </div>
+        </div>
+        <div class="right-section">
+            <h5>รายวิชาที่บันทึก</h5>
+            {% for notebook_pivot in favourite_notebook_pivots %}
+                {% with notebook=notebook_pivot.notebook %}
+                    <div>
+                        <h3><a href="{% url 'notebook' notebook.id %}">{{ notebook.title }}</a></h3>
+                        <p>{{ notebook_pivot.level_label }}</p>
+                        <p>{{ notebook.chapters }} chapters</p>
+                        {% if notebook.is_maths %}
+                            <p>***มีคณิตศาสตร์***</p>
+                        {% endif %}
+                        <p>{{notebook.description}}</p>
+                        <form action="{% url 'unfavourite_notebook' notebook.id %}" method="post">
+                            {% csrf_token %}
+                            <p>
+                                <button type="submit">ลบรายวิชานี้</button>
+                            </p>
+                        </form>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
 </section>
+
+<style>
+    .content-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .left-section {
+        width: 30%;
+    }
+    .right-section {
+        width: 65%; /* Adjust width as needed */
+    }
+    .vertical-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .vertical-links p {
+        margin: 0;
+    }
+</style>
 {% endblock %}

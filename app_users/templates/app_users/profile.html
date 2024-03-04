@@ -6,46 +6,77 @@ Profile |
 
 {% block content %}
 <section class="content-section content-section-single">
-    <div class="content-container content-container-narrow">
-        <h3 class="content-title">สวัสดีคุณ {{ user.username }}😘</h3>
-        <p>
-            <a href="{% url 'dashboard' %}">แดชบอร์ด</a>
-            <a href="{% url 'profile' %}">ข้อมูลผู้ใช้</a>
-            <a href="{% url 'password_change' %}">เปลี่ยนรหัสผ่าน</a>
-        </p>
-        <h5>ข้อมูลผู้ใช้</h5>
-        {% if flash_massage %}
-            <p style="color: rgb(148, 226, 30);">{{ flash_massage }}</p>
-        {% endif %}
+    <div class="content-container content-container-wide">
+        <div class="left-section">
+            <h3 class="content-title" style="font-size: 32px;">สวัสดีคุณ {{ user.username }}😘</h3>
+            <div class="vertical-links">
+                <p>
+                    <a href="{% url 'dashboard' %}" style="font-size: large;">แดชบอร์ด</a>
+                </p>
+                <p>
+                    <a href="{% url 'profile' %}" style="font-size: large;">ข้อมูลผู้ใช้</a>
+                </p>
+                <p>
+                    <a href="{% url 'password_change' %}" style="font-size: large;">เปลี่ยนรหัสผ่าน</a>
+                </p>
+            </div>
+        </div>
+        <div class="right-section">
+            <h5>ข้อมูลผู้ใช้</h5>
+            {% if flash_massage %}
+                <p style="color: rgb(148, 226, 30);">{{ flash_massage }}</p>
+            {% endif %}
 
-        <form action="{% url 'profile' %}" method="post">
-            {% csrf_token %}
-            <div class="form-field" style="margin-bottom: 16px;">
-                {{ form.first_name.label_tag }}
-                {{ form.first_name }}
-                {{ form.first_name.errors }}
-            </div>
-            <div class="form-field" style="margin-bottom: 16px;">
-                {{ form.last_name.label_tag }}
-                {{ form.last_name }}
-                {{ form.last_name.errors }}
-            </div>
-            <div class="form-field" style="margin-bottom: 16px;">
-                {{ extended_form.address.label_tag }}
-                {{ extended_form.address }}
-                {{ extended_form.address.errors }}
-            </div>
-            <div class="form-field" style="margin-bottom: 16px;">
-                {{ extended_form.phone.label_tag }}
-                {{ extended_form.phone }}
-                {{ extended_form.phone.errors }}
-            </div>
-            <p>
-                <button class="button button-primary" type="submit">
-                    บันทึก
-                </button>
-            </p>
-        </form>
+            <form action="{% url 'profile' %}" method="post">
+                {% csrf_token %}
+                <div class="form-field" style="margin-bottom: 16px;">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="form-field" style="margin-bottom: 16px;">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+                <div class="form-field" style="margin-bottom: 16px;">
+                    {{ extended_form.address.label_tag }}
+                    {{ extended_form.address }}
+                    {{ extended_form.address.errors }}
+                </div>
+                <div class="form-field" style="margin-bottom: 16px;">
+                    {{ extended_form.phone.label_tag }}
+                    {{ extended_form.phone }}
+                    {{ extended_form.phone.errors }}
+                </div>
+                <p>
+                    <button class="button button-primary" type="submit">
+                        บันทึก
+                    </button>
+                </p>
+            </form>
+        </div>
     </div>
 </section>
+
+<style>
+    .content-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .left-section {
+        width: 30%;
+    }
+    .right-section {
+        width: 65%; /* Adjust width as needed */
+    }
+    .vertical-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .vertical-links p {
+        margin: 0;
+    }
+</style>
 {% endblock %}

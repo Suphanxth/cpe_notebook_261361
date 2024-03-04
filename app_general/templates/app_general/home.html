@@ -2,14 +2,19 @@
 {% load static %}
 
 {% block content %}
-<section class="home-landing-section">
-    <h1 class="home-landing-text">CPEnotebook</h1>
-    <p class="home-landing-text">รวมสไลด์รายวิชาในหลักสูตรวิศวกรรมคอมพิวเตอร์ สำหรับวิศวกรคอมพิวเตอร์</p>
-    <p class="home-landing-text">
-        <a class="button" href="{% url 'notebooks' %}">รายวิชาทั้งหมด</a>
-        <!-- <a class="button button-primary" href="{% url 'library' %}">บันทึกรายวิชา</a> -->
-    </p>
-</section>
+
+<div class="custom-background">
+    <div class="wave"></div><div class="wave"></div><div class="wave"></div>
+    <section class="home-landing-section">
+        <h1 class="home-landing-text">CPEnotebook</h1>
+        <p class="home-landing-text">รวมสไลด์รายวิชาในหลักสูตรวิศวกรรมคอมพิวเตอร์ สำหรับวิศวกรคอมพิวเตอร์</p>
+        <p class="home-landing-text">
+            <a class="button" href="{% url 'notebooks' %}">รายวิชาทั้งหมด</a>
+            <!-- <a class="button button-primary" href="{% url 'library' %}">บันทึกรายวิชา</a> -->
+    </section>
+    
+</div>
+
 <section class="content-section">
     <div class="content-container">
         <h4 class="content-title text-center">คำอธิบาย</h4>
