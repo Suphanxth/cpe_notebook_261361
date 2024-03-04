@@ -1,7 +1,8 @@
 from django.http.response import HttpResponse
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Notebook
+from app_lectures.models import Lecture
 from app_notebooks.forms import FavouriteNotebookForm
 from django.contrib.auth.decorators import login_required
 from app_users.models import UserFavouriteNotebook
@@ -16,24 +17,32 @@ def notebooks(request):
 
 
 def notebook(request: HttpRequest, notebook_id):
-    one_notebook = None
+    one_notebook = get_object_or_404(Notebook, id=notebook_id)
+    
+    # Filter lectures based on the notebook_id
+    lectures = Lecture.objects.filter(notebook_id=notebook_id)
+
     is_favourite_notebook = False
+
     try:
-        one_notebook = Notebook.objects.get(id=notebook_id)
         if request.user.is_authenticated:
             user_favourite_notebook = UserFavouriteNotebook.objects.get(
                 user=request.user,
                 notebook=one_notebook
             )
             is_favourite_notebook = user_favourite_notebook is not None
-    except:
-        print('ไม่พบรายวิชานี้')
+    except UserFavouriteNotebook.DoesNotExist:
+        pass  # Handle the case when the user has not marked it as a favorite.
+
     form = FavouriteNotebookForm()
-    context = { 
-        'notebook': one_notebook, 
-        "form": form,
-        "is_favourite_notebook": is_favourite_notebook,
+
+    context = {
+        'notebook': one_notebook,
+        'lectures': lectures,  # Pass the filtered lectures to the template
+        'form': form,
+        'is_favourite_notebook': is_favourite_notebook,
     }
+
     return render(request, 'app_notebooks/notebook.html', context)
 
 
