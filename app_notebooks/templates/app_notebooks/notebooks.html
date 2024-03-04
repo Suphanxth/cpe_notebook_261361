@@ -59,9 +59,13 @@ $(document).ready(function(){
                 },
                 success: function(data){
                     var results = '';
-                    data.notebooks.forEach(function(notebook){
-                        results += '<div><a href="/notebooks/' + notebook.id + '">' + notebook.code + ' ' + notebook.title + '</a></div>';
-                    });
+                    if (data.notebooks.length > 0) {
+                        data.notebooks.forEach(function(notebook){
+                            results += '<div><a href="/notebooks/' + notebook.id + '">' + notebook.code + ' ' + notebook.title + '</a></div>';
+                        });
+                    } else {
+                        results = '<div>ไม่พบรายวิชา</div>'; // Display message if no results found
+                    }
                     $('#search-results').html(results);
                     $('#search-results').show(); // Show the search results
                 }
