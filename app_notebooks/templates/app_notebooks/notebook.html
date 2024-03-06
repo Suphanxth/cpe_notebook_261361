@@ -39,12 +39,11 @@
         {% else %}
             <!-- <a class="button button-primary" href="{% url 'library' %}">บันทึกวิชา</a> -->
         {% endif %}
-        <div class="grid">
+        <div class="lecture-grid">
             {% for lecture in lectures %}
                 <a href="{% url 'lecture' lecture_id=lecture.lecture_id %}" target="_blank">Lecture {{ forloop.counter }}</a>
             {% endfor %}
         </div>
     </div>
 </section>
-
 {% endblock %}

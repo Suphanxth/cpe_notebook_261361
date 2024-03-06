@@ -98,6 +98,9 @@
   display: block;
   max-width: 100%;
   margin-bottom: 12px;
+  height: auto;  /* Maintain the image's aspect ratio */
+  display: block;  /* Remove any extra space below the image */
+  margin: 0 auto;
 }
 
 html{
@@ -386,4 +389,28 @@ body.dark{
   100% {
       transform: translateX(1);
   }
+}
+
+.lecture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.lecture-grid a {
+  display: block;
+  padding: 15px;
+  text-align: center;
+  background-color: rgb(177, 233, 252);
+  color: #000000;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.lecture-grid a:hover {
+  background-color: #4ea5df;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(41, 128, 185, 0.4);
 }
