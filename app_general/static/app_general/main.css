@@ -414,3 +414,11 @@ body.dark{
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(41, 128, 185, 0.4);
 }
+
+.styled-iframe {
+  width: 516px;
+  height: 300px;
+  border: 2px solid #ddd; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
